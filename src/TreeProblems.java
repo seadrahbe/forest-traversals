@@ -124,7 +124,7 @@ public class TreeProblems {
   public static int sumTree(Map<Integer, List<Integer>> tree) {
 
     if (tree == null) return 0;
-    
+
     int sum = 0;
 
     for (Integer key : tree.keySet()) {
@@ -154,6 +154,22 @@ public class TreeProblems {
    Hint: No recursion needed! Think about how you would do this by hand.
   */
   public static <T> T findRoot(Map<T, List<T>> tree) {
+    Set<T> present = new HashSet<>();
+
+    for (T key : tree.keySet()) {
+      if (!tree.get(key).isEmpty()) {
+        for (T val : tree.get(key)) { 
+          present.add(val);
+        }
+      }
+    }
+
+    for (T key : tree.keySet()) {
+      if (!present.contains(key)) {
+        return key;
+      }
+    }
+
     return null;
   }
 
