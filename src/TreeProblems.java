@@ -1,5 +1,3 @@
-import java.util.List;
-import java.util.Map;
 import java.util.*;
 
 public class TreeProblems {
@@ -192,7 +190,16 @@ public class TreeProblems {
    
   */
   public static <T> int maxDepth(Node<T> root) {
-    return -1;
+    if (root == null) return 0;
+
+    int depth = 1;
+
+    for (Node child : root.children) {
+      depth = Math.max(maxDepth(child) + 1, depth);
+    }
+    
+    return depth;
+
   }
 
   /*
