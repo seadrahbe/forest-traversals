@@ -89,7 +89,16 @@ public class TreeProblems {
    A null tree should return 0
   */
   public static int sumTree(Node<Integer> root) {
-    return -1;
+
+    if (root == null) return 0;
+
+    int sum = root.value;
+
+    for (Node<Integer> node : root.children) {
+      sum += sumTree(node);
+    }
+
+    return sum;
   }
 
   /*
