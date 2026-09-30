@@ -152,6 +152,8 @@ public class TreeProblems {
    Hint: No recursion needed! Think about how you would do this by hand.
   */
   public static <T> T findRoot(Map<T, List<T>> tree) {
+    if (tree == null) return null;
+
     Set<T> present = new HashSet<>();
 
     for (T key : tree.keySet()) {
@@ -221,6 +223,20 @@ public class TreeProblems {
    Hint: Use findRoot to start. Then, make a recursive helper method.
   */
   public static int maxDepth(Map<String, List<String>> tree) {
-    return -1;
+    String root = findRoot(tree);
+
+    return helper(tree, root);
+  }
+
+  public static int helper(Map<String, List<String>> tree, String root) {
+    if (root == null) return 0;
+
+    int depth = 1;
+
+    for (String child : tree.get(root)) {
+      depth = Math.max(helper(tree, child) + 1, depth);
+    }
+
+    return depth;
   }
 }
